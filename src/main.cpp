@@ -19,6 +19,12 @@ int main()
     SDL_Renderer* renderer;
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN, &window, &renderer);
 
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+
+    int width;
+    int height;
+    SDL_GetWindowSize(window, &width, &height);
+
     for (auto k = 1.0f; k < 100.0f; k += 0.005f)
     {
         SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
@@ -33,10 +39,10 @@ int main()
             auto y2 = sin(2.0f * M_PI * (i * k) / 200.0f);
 
             SDL_RenderDrawLine(renderer,
-                               RoundReal((x1 + 1.0f) * HEIGHT / 2 + (WIDTH - HEIGHT) / 2.0f),
-                               RoundReal((y1 + 1.0f) * HEIGHT / 2),
-                               RoundReal((x2 + 1.0f) * HEIGHT / 2),
-                               RoundReal((y2 + 1.0f) * HEIGHT / 2));
+                               RoundReal((x1 + 1.0f) * height / 2 + (width - height) / 2.0f),
+                               RoundReal((y1 + 1.0f) * height / 2),
+                               RoundReal((x2 + 1.0f) * height / 2),
+                               RoundReal((y2 + 1.0f) * height / 2));
         }
 
         SDL_RenderPresent(renderer);
